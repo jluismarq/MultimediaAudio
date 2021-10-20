@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MultimediaAudio</string>
+    <string name="btnPlay_Text">PLAY</string>
+    <string name="btnPause_Text">PAUSE</string>
+</resources>
