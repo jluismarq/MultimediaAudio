@@ -3,18 +3,26 @@ package mx.ipn.cic.geo.multimediaaudio
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import mx.ipn.cic.geo.multimediaaudio.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding:ActivityMainBinding
     private lateinit var mediaPlayer : MediaPlayer
     private lateinit var btnPlay: Button
     private lateinit var btnPause: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding=ActivityMainBinding.inflate(layoutInflater)
+        //setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+
+
 
         supportActionBar?.hide()
 
@@ -23,6 +31,24 @@ class MainActivity : AppCompatActivity() {
 
         // Métodos para reproducir y detener el audio.
         btnPlay = findViewById(R.id.btnPlay)
+        btnPause = findViewById(R.id.btnPause)
+
+        with(binding) {
+            btnPlay.setOnClickListener {
+                Log.d("MultimediaAudio", "Iniciando Reproducción...")
+                mediaPlayer.start()
+
+            }
+
+            btnPause.setOnClickListener {
+                if (mediaPlayer.isPlaying) {
+                    Log.d("MultimediaAudio", "Pausando Reproducción...")
+                    mediaPlayer.pause()
+                }
+            }
+
+        }
+
         /*
         btnPlay.setOnClickListener {
             Log.d("MultimediaAudio", "Iniciando Reproducción...")
@@ -30,7 +56,9 @@ class MainActivity : AppCompatActivity() {
         }
         */
 
-        btnPause = findViewById(R.id.btnPause)
+        //btnPause = findViewById(R.id.btnPause)
+
+
         /*
         btnPause.setOnClickListener {
             if (mediaPlayer.isPlaying) {
